@@ -1,1 +1,1 @@
-# stat-201-group-projct
+# [STAT 201 group project](https://ubc-stat.github.io/stat-201/group-project.html)
