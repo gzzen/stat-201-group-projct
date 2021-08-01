@@ -17,19 +17,21 @@ However, Jose’s prestige uncontrollably fades out when rumours arises about hi
 
 <img src="intro.assets/Screen Shot 2021-07-30 at 3.30.28 PM.png" alt="Screen Shot 2021-07-30 at 3.30.28 PM" style="zoom:33%;" />
 
+<img src="intro.assets/jose.jpg" alt="jose" style="zoom:50%;" />
+
 ### Question & Methodology
 
 Our propose in this study is to quantitatively evaluate the effectiveness of Manchester United sacking Jose Mourinho. In other word, whether or not such a decision significantly improves the United’ performance in Premier League. 
 
 Our dataset recorded Manchester United’ goal differences in 76 matches over season 2016/17 and 2017/18 coached by Jose Mourinho, and 76 matches in season 19/20 and 20/21 coached by Ole Gunnar Solskjær, who replaced Jose’s position in December, 2018. 
 
-The ELO system is widely adopted in modern soccer analysis, which depends on the goal difference, and add weights on multiple factors such as the current strength of the home team and away team (Hvattum & Arntzen, 2009). Due to limitations of methodologies, we will investigate only the goal difference in the ELO system. Goal difference is a random variable that quantifies the teams’ overall performance in one game, calculated via substracting the scorings by the losing points. 
+The ELO system is widely adopted in modern soccer analysis, which depends on the goal difference, and add weights on multiple factors such as the current strength of the home team and away team (Hvattum & Arntzen, 2009). Due to limitations of methodologies, we will investigate only the goal difference in the ELO system. Goal difference is a random variable that quantifies the teams’ overall performance in one game, calculated via substracting the scorings by the losing points. w
 
 For the purpose of comparison, we will setup a hypothesis test with significance level $\alpha=0.05$ using the means as the location parameter, and standard deviations as the scale parameter. Since we have no access to the entire population of matches, bootstrap with `rememebr to fill the reps` repititions will be impliemented to estimate to the true population mean and standard deviation of our statistics between two coaches. 
 
 #### Location parameter: means
 
-The location parameter determines the position of the center of the distribution, which evaluates the overall goal difference for each coach. The manager with higher mean must have higher averaged-out difference in goals. However, we still need to examine the significance in hypothesis testing. Assume $\mu_m$​ is the mean of goal difference for Manchester United under Jose Mourinho’s leadership, and $\mu_s$​​​​ represents the mean goal difference as Ole Gunnar Solskjær took his position. We want to study if the successor is doing a better job after Jose is fired, so we have the hypothesis setup as below:
+The location parameter determines the position of the center of the distribution, which evaluates the overall goal difference for each coach. The manager with higher mean must have higher averaged-out difference in goals. However, we still need to examine the significance in hypothesis testing. Assume $\mu_m$​​ is the mean of goal difference for Manchester United under Jose Mourinho’s leadership, and $\mu_s$​​​​​ represents the mean goal difference as Ole Gunnar Solskjær took his position. We want to study if the successor is doing a better job after Jose is fired, so we have the hypothesis setup as below:
 
 - Null hypothesis $H_0:\mu_s=\mu_m$​​ 
 - Alternative hypothesis $H_A:\mu_s>\mu_m$​​ 
@@ -50,7 +52,7 @@ Our report is trustworthy for two reasons:
 From the histogram and box-plot above, We can see that ...[TO-DO]. However, due to sampling variation, we are not ready reach a conclusion yet. Therefore, we plan to implement the following statistical methods to address the gap:
 
 ### Bootstrap sampling
-We plan to use bootstrap sampling to carry out 1000 resamples (reps = 1000) with replacement from the dataset. We will measure the approximated sampling variation with standard error, and calculate confidence intervals at a 5% significance level to find plausible values for the estimates under two coaches: the mean goal difference ($/mu_s_hat$ for Solskjær, $/mu_m_hat$ for Mourinho) and standard deviation of goal difference ($/sigma_s_hat$ for Solskjær, $/sigma_m_hat$ for Mourinho) in each replication.
+We plan to use bootstrap sampling to carry out 1000 resamples (reps = 1000) with replacement from the dataset. We will measure the approximated sampling variation with standard error, and calculate confidence intervals at a 5% significance level to find plausible values for the estimates under two coaches: the mean goal difference ($\hat{\mu_s}$​​​​ for Solskjær, $\hat\mu_m$​​​​ for Mourinho) and standard deviation of goal difference ($\hat\sigma_s$​​​​ for Solskjær, $\hat\sigma_m$​​​​ for Mourinho) in each replication.
 
 ### Hypothesis testing
 We plan to do hypothesis tests for two parameters under two categories. Denote $\mu_s$ as mean, $\sigma_s$ as standard deviation of goal difference for Solskjær and $\mu_m$ as mean, $\sigma_m$ as standard deviation of goal difference for Mourinho.
