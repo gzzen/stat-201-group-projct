@@ -43,51 +43,32 @@ The scale parameter decides the spread-out of the distribution. In this study, t
 
 ## Methods: Plan
 
-In this project, we are trying to investigate whether replacing the coach Jose Mourinho with Ole Gunnar Solskjær significantly improves the Manchester United’s performance using statistical inference methods. Our report is trustworthy for two reasons:
-- We do not perform a census since it takes many resources to obtain results from all official matches, cups, friendly games and sponsorship games. However, the dataset we select serves as a random sample that we take. In other words, the sample of 76 matches results for each coach is unbiased and representative of the general performance of the United team coached by Mourinho versus Solskjær. The result we obtain from this dataset can generalize to the population, which means we can infer and compare the overall performance of the team supervised under these two coaches and conclude on the question we set earlier.
-- We plan to both take advantages of modern technology to do simulation-based inference and perform classical theory-based inference that have been used for pro-founding findings in history. There are two facets that we measure the performance of the team based on the goal difference in ELO system: 1) the mean of goal difference, representing how well the team play; 2) the standard deviation of goal difference, describing how stable the team perform. We plan to use bootstrap sampling to construct confidence levels for estimates of these two parameters, perform two hypothesis tests to compare estimates under two categories; and based on Central Limit Theorem, approximate confidence interval and implement asymptotic two-sample t-test for the mean parameter. By using these statistical methods, we make this study more objective, comprehensive and reliable. Besides, we tend to make a more precise estimate and draw a more solid conclusion by setting the significance level as 5%. 
+Our report is trustworthy for two reasons:
+- Although we do not perform a census, the dataset we select serves as a random sample that we take. The result we obtain from this dataset can generalize to the population, which means we can infer and compare the overall performance of the team supervised under these two coaches.
+- We plan to use both simulation-based and theory-based inferential methods, explained in details below. In this way, we make this study more objective, comprehensive and reliable. Besides, we tend to make a more precise estimate and draw a more solid conclusion by setting the significance level as 5%. 
 
-In our exploratory data analysis section, we have constructed various plots from the dataset: histogram to view the sample distribution and box-plot with two categories to view the difference. We can see that ...[TO-DO]. However, due to sampling variation, we are not ready and it is not reasonable to reach to a conclusion that Ole Gunnar Solskjær is better than Jose Mourinho on improving Manchester United's performance. For example, we might have selected the ferocious battles when the team was supervised under Mourinho and the glorious victories supervised under Solskjær (Mourinho led the team to victory with large goal differences as well but unfortunately is not in the sample).
+From the histogram and box-plot above, We can see that ...[TO-DO]. However, due to sampling variation, we are not ready reach a conclusion yet. Therefore, we plan to implement the following statistical methods to address the gap:
 
-Therefore, we plan to implement the following statistical methods to address the gap:
 ### Bootstrap sampling
-We are going to use bootstrap sampling to carry out 1000 resamples (reps = 1000) with replacement from the dataset. This way, we can simulate taking multiple samples from population, approximate sampling distribution, measure the effect of sampling variation with standard error, and calculate confidence intervals at a 5% significance level ($\alpha=0.05$) to find plausible values for the estimates under two coaches: the mean goal difference ($/mu_s_hat$ for Solskjær, $/mu_m_hat$ for Mourinho) and standard deviation of goal difference ($/sigma_s_hat$ for Solskjær, $/sigma_m_hat$ for Mourinho) in each replication.
+We plan to use bootstrap sampling to carry out 1000 resamples (reps = 1000) with replacement from the dataset. We will measure the approximated sampling variation with standard error, and calculate confidence intervals at a 5% significance level to find plausible values for the estimates under two coaches: the mean goal difference ($/mu_s_hat$ for Solskjær, $/mu_m_hat$ for Mourinho) and standard deviation of goal difference ($/sigma_s_hat$ for Solskjær, $/sigma_m_hat$ for Mourinho) in each replication.
 
 ### Hypothesis testing
-We are going to do two hypothesis tests to compare Manchester United's performance supervised under Jose Mourinho versus Ole Gunnar Solskjær. 
-One is to test against the mean of the goal difference under each coach. The null hypothesis is the mean goal difference is the same for two coaches while the alternative hypothesis is the mean goal difference for Solskjær is higher than the one for Mourinho. Let's denote $\mu_s$ as the mean goal difference for Solskjær and $\mu_m$ as the mean goal difference for Mourinho.
+We plan to do hypothesis tests for two parameters under two categories. Denote $\mu_s$ as mean, $\sigma_s$ as standard deviation of goal difference for Solskjær and $\mu_m$ as mean, $\sigma_m$ as standard deviation of goal difference for Mourinho.
 
 Hypothesis test on the mean of goal difference:
 - Null hypothesis $H_0:\mu_s=\mu_m$​​ 
 - Alternative hypothesis $H_A:\mu_s>\mu_m$​​ 
 
-The other one is to test against the standard deviation of the goal difference under each coach. The null hypothesis is the standard deviation of goal difference is the same for two coaches while the alternative hypothesis is the standard deviation of goal difference for Solskjær is lower than the one for Mourinho. Let's denote $\sigma_s$ as the standard deviation of goal difference for Solskjær and $\sigma_m$ as the standard deviation of goal difference for Mourinho.
-
 Hypothesis testing on the standard deviation of goal difference:
 - Null hypothesis $H_0:\sigma_s=\sigma_m$​​​ 
 - Alternative hypothesis $H_A:\sigma_s<\sigma_m$​​​​ 
 
-We set the significance level for both hypothesis tests to be 5%. 
-Signifiant level: $\alpha=0.05$
+Signifiant level for both tests: $\alpha=0.05$
 
 ### Confidence interval based on CLT 
-To begin with, we want to justify that Central Limit Theorem is applicable for our dataset. First, the sample size we have for each coach 76 is larger than 30, thus sufficiently large to perform CLT. Second, due to the randomness nature of a soccer match, says weather, rivals and referees, etc, the sample was roughly taken in an independent fashion. Third, the estimator mean of goal difference is a sum of random components, so the sampling distribution of mean converges to the Normal distribution.
+To begin with, we want to justify that Central Limit Theorem is applicable for our dataset. First, the sample size we have for each coach 76 is larger than 30, thus sufficiently large to perform CLT. Second, the sample was roughly taken in an independent fashion. Third, the estimator mean of goal difference is a sum of random components, so the sampling distribution of mean converges to the Normal distribution. With this in mind, we are going to approximate confidence intervals for the mean goal difference based on CLT. 
 
-With this in mind, in addition to the confidence intervals constructed using bootstrap, we are going to approximate confidence intervals for the mean goal difference based on CLT. 
-
-### Two-sample t-test
-Given that we can see the dataset as two independent samples, we are going to carry out approximation to test the difference of mean goal difference between two coaches, i.e. two-sample t-test relying on CLT. Let's denote $\mu_s$ as the mean goal difference for Solskjær and $\mu_m$ as the mean goal difference for Mourinho, $\sigma_s$ as the standard deviation of goal difference for Solskjær and $\sigma_m$ as the standard deviation of goal difference for Mourinho, and set the significance level to be 5% again.
-Hypothesis testing on the difference of mean goal difference:
-- Null hypothesis $H_0:\mu_s-\mu_m=0$​​ 
-- Alternative hypothesis $H_A:\mu_s-\mu_m>0$​​ 
-- Signifiant level: $\alpha=0.05$
-- Test statistics: $(\mu_s-\mu_m) / sqrt(\sigma_s^2 / 76 + \sigma_m^2 / 76)
-
-Based on the statistical methods we propose to perform, we will be able to answer the question we set: whether replacing the coach Jose Mourinho with Ole Gunnar Solskjær significantly improves the Manchester United’s performance. By performing hypothesis testing, we will find out whether we end up rejecting the null hypothesis; by calculating point estimates and its confidence intervals, we will find out the averaged-out difference in goals with mean and the performance stabality with standard deviation. 
-
-In terms of the impacts of these findings, it gives insights about whether the replacement of coach back in December 2018 was a good decision on improving the United team's performance. It could be viewed as a measurement of the performance of each coach reflectively and be beneficial to the stakeholders of Manchester United, including its managers, sponsors, fans, etc. Furthermore, it would shed light on future coach changes and even other decision making for the team. 
-
-This study could lead to future questions including: statistically whether we can do hypothesis testing on a different measurement of performance - the win, lose, and draw rate before and after coach changes, which is to test against proportion under three categories; take in more explanatory variables similar to the ELO system to measure performance, since it might be imprudent to ascribe the performance of the team entirely to its coach.
+We expect to answer the question we set: whether replacing the coach Jose Mourinho with Ole Gunnar Solskjær significantly improves the Manchester United’s performance, based on whether to reject the null hypothesis and construction of confidence intervals for point estimates of two parameters. These findings provide insights about the performance of each coach, whether sacking Mourinho is a good decision, and shed light on future decision making, which will be beneficial to the stakeholders of United, such as its managers, sponsors and fans. This study could lead to future questions like: whether we can do hypothesis testing on the win, lose, and draw rate; take in more explanatory variables in the ELO system to measure performance.
 
 ## References
 
